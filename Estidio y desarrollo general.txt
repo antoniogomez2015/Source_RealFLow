@@ -1,0 +1,142 @@
+
+REALFLOW 2012
+
+
+	ShortCuts
+
+	Simulate: A
+
+	Reset Simulation: Control + A
+
+	Fast View: F
+
+
+	GENERAL:
+
+		RATE: Simulate - Option FPS Output 24/30/60...
+
+		INTEGRATION: Simulate - Option; resolución del la interpolación  (MIN SubSteps), (MAX SubSteps)
+
+		RIGID/SOFT BODY SOLVER: Simulate - Option; Quality: Low/Mdium/High
+
+		Scale Scene Optcions: "al lado de reset", Geometry Scale/ Deamon force scale..
+
+
+	MASTER:
+
+		1_Para aumentar la calidad es aconsejable aumentar la cantidad de "substeps", como tambien la escala de las forces y daemond
+
+		2_para aumentar el rendimiento es recomendable hacer más pequeño los emisores de partículas, ya que así, éstos necesitarán emitir menos partículas
+		por ende, el tiempo de ejecución para procesar simulaciones más complejas será menor, permitiendo esto, aumentar considerablemente los valores 
+		de detalle de "Simulate - option - SubStep Min/Max", ganando así, gran capacidad de representar el detalle.
+
+		3_para una representación de detalle superior, es preciso aumentar la relación "Simulate - option - SubStep Min/Max", y a su vez, las "Particle/Resolution",
+		(opcional), para que así, hayan las suficientes partículas capaces de representar el detalle creado por: "Simulate - option - SubStep Min/Max",
+
+		4_Por los general las relaciones entre "Simulate - option - SubStep Min/Max", deberían ser logarítmicas, por ejemplo: si en SubStep MIN es "100", 
+		en SubStep MAX, debería ser el doble "200",
+
+
+
+	PARTICLES: Consideraciones de las partículas
+
+		NOTA: el tamaño del amisor influye proporcionalmente al resultado de la cantidad y comportamiento de las partículas
+
+		Resolution: cantidad de partículas
+
+		Density: frecuencia ó volúmen de salida de las partículas
+
+
+	CYCLE (EMITER - SHAPE):
+
+		Volume: "proyecta las partículas", a un tiempo en segundos determinado, luego las partículas caen porque no siguen emitiéndose
+
+		Ring Ratio: permite emitir desde el contorno ó perímetro del emisor curcular, en forna de donout
+
+
+
+	DAEMON:
+
+		K Volume: permite crear un contenedor el cuál limitará hasta donde se extendrán las particulas
+
+		K Age: permite indicar la vida "Life" y "Variation", en fotogramas ej: Life:100f
+
+		Gravity: permite agregar gravedad en Strengh": 9.8, gravedad normal
+
+
+	
+	PARTICLE FLUID INTERACTION (OBJECT/COLLIDER): 
+
+		Sticky: "pegajoso", es recomendable colocar el mismo valor que le colocamos a viscocity
+
+		Bounce: "rbote", debote de las partículas sobre el objeto ó collider
+
+		Roughness: "Rugosidad" rugosidad que ofrese alta resistencia a las partículas sobre una superficie
+
+		Particle friction: "fricción de las partículas", resistencia de las partículas osbre una superficie
+
+
+
+	MESH MENÚ:
+
+		NOTA: cuanto hyamos terminado nuestra simulación y desiemos convertirla a geometría para enviarla a una programa 3D, debemos hacer los siguientes pasos
+
+		1_vamos a: "Mesh Menú/Particle Mesh (Standard)",
+
+		2_en las opciones de "Particle Mesh (Standard)/Filters/@Relaxation", debemos indicar la resolución que tendrá la mesh, resultante; vamos de "0.1", ha "0.001"
+
+		3_para previsializar el mesh resultante en el frame actual, seleccionamos "Particle Mesh (Standard)", y le damos Right Click/"Build"
+
+		4_para contruir la mesh, resultante definitiva, seleccionamos "Particle Mesh (Standard)", y le damos "Build Meshes", (último botón de la barra superior)
+
+
+
+	INITIAL STATE:
+
+		1_es comveniente utilizar el "Lock Timeline Progress", al principio del timeline para así, bloquear el progreso del timeline y tenerlo disponible para simulación a proseguir
+
+		2_luego inicializamos la simulación alta el frame que deseamos sea el estado inicial
+
+		3_ahora vamos a "Initial State/Use Initial State/", y los colocamos en "Yes", y a continuación hacemos "Make initial State"
+
+		4_posteriormente lieberamos el timeline "Lock Timeline Progress", para que así, podramos registrar la nueva simulación
+
+		5_ahora hacemos la función espacial "Reset to Initial State", para que así. comiense la simulación desde el frame inicial y a partir de la simulación que hicimos como "Initial State"
+
+	
+	MODE:
+
+		Simulation: 
+
+
+			Active:
+
+				Esta es la opción por defecto en la cuál la simulación de un emiror siempre esta en actividad y ejecución constante interactuando  con los demás elementos
+
+			Inactive:
+
+				Esta opción es especialmente útil para detener una simulación de un emisor en un punto determinado, para que otra continue simulándose e interactiando mientras la simulación en cuestión se mantiene estática 
+				sólo recibiendo interacciones de los demás elementos y emisores
+
+			Cache:
+
+				Esta opción permite almacenar la representación de la simulación de las partículas del emisor actual seleccionado, esto nos permitirá poder hacer cambios las propiedades del emisor 
+				como por ejemplo: aumentar la resolution,  sin que esto afecte la visualización de la simulación cacheada previamente, de esta manera podremos hacer optimizar el rendimiendo y mejorar 
+				la calidad y el detalle sin sobre cargar el entorno de un excelo de partículas que sobre cargarían la simulación deseada. A partir de este paso podremos hacer reset simulate, y hacer cambios
+				en las propiedades de la simulación y luego volver ha hacer la simulación sin que esto afecte la visualización de la sumulación más si el detalle y resolución ganada
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+		
+
